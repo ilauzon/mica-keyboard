@@ -1,0 +1,165 @@
+units:
+  kx: cx
+  ky: cy
+  px: kx + 4
+  py: ky + 4
+points:
+  zones:
+    matrix:
+      key:
+        padding: 1ky
+        spread: 1kx
+      columns:
+        outer:
+        pinky:
+        ring:
+          key.stagger: 3
+        middle:
+          key.stagger: 2
+        index:
+          rows.mod.skip: true
+          key.stagger: -2
+        inner:
+          key.stagger: -2
+          rows.mod.skip: true
+      rows:
+        mod:
+        bottom:
+        home:
+        top:
+        num:
+    thumbs:
+      key:
+        padding: 1ky
+        spread: 1kx
+      anchor:
+        ref: matrix_inner_bottom
+        shift: [0.9kx, -1.2ky]
+      columns:
+        space:
+          rows.cluster.splay: -30
+        backspace:
+      rows:
+        cluster:
+    layer2:
+      key:
+        padding: 1ky
+        spread: 1kx
+      anchor: 
+        ref: matrix_inner_mod
+        shift: [-0.3kx, 0]
+    utils:
+      key:
+        padding: 1.5ky
+        height: 1.5ky
+      anchor:
+        ref: matrix_inner_bottom
+        shift: [1kx, 0.3ky]
+      columns:
+        single:
+      rows:
+        lower:
+        upper:
+  mirror: &mirror
+    ref: thumbs_backspace_cluster
+    distance: 2.5kx
+outlines:
+  raw:
+    - what: rectangle
+      where: true
+      size: [px, py]
+  keys:
+    - what: rectangle
+      where: true
+      size: [kx-0.5, ky-0.5]
+  boardleft:
+    - what: polygon
+      operation: stack
+      fillet: 4
+      points:
+        - ref: matrix_outer_num
+          shift: [-0.5px, 0.5py]
+        - ref: matrix_ring_num
+          shift: [-0.5px, 0.5py]
+        - ref: matrix_middle_num
+          shift: [-0.5px, 0.5py]
+        - ref: matrix_middle_num
+          shift: [0.5px, 0.5py]
+        - ref: matrix_index_num
+          shift: [0.5px, 0.5py]
+        - ref: matrix_inner_num
+          shift: [0.5px, 0.5py]
+        - ref: utils_single_upper
+          shift: [0.5px, 0.75py]
+        - ref: utils_single_lower
+          shift: [0.5px, -0.75py]
+        - ref: thumbs_backspace_cluster
+          shift: [0.5px, 0.5py]
+        - ref: thumbs_backspace_cluster
+          shift: [0.5px, -0.5py]
+        - ref: layer2
+          shift: [-0.5px, -0.5py]
+        - ref: matrix_pinky_mod
+          shift: [0.5px, -0.5py]
+        - ref: matrix_outer_mod
+          shift: [-0.5px, -0.5py]
+        - ref: matrix_outer_bottom
+          shift: [-0.5px, -0.5py]
+  comboleft:
+    - name: boardleft
+    - operation: subtract
+      name: keys
+  boardright:
+    - what: polygon
+      operation: stack
+      fillet: 4
+      points:
+        - ref: mirror_matrix_outer_num
+          shift: [-0.5px, 0.5py]
+        - ref: mirror_matrix_ring_num
+          shift: [-0.5px, 0.5py]
+        - ref: mirror_matrix_middle_num
+          shift: [-0.5px, 0.5py]
+        - ref: mirror_matrix_middle_num
+          shift: [0.5px, 0.5py]
+        - ref: mirror_matrix_index_num
+          shift: [0.5px, 0.5py]
+        - ref: mirror_matrix_inner_num
+          shift: [0.5px, 0.5py]
+        - ref: mirror_utils_single_upper
+          shift: [0.5px, 0.75py]
+        - ref: mirror_utils_single_lower
+          shift: [0.5px, -0.75py]
+        - ref: mirror_thumbs_backspace_cluster
+          shift: [0.5px, 0.5py]
+        - ref: mirror_thumbs_backspace_cluster
+          shift: [0.5px, -0.5py]
+        - ref: mirror_layer2
+          shift: [-0.5px, -0.5py]
+        - ref: mirror_matrix_pinky_mod
+          shift: [0.5px, -0.5py]
+        - ref: mirror_matrix_outer_mod
+          shift: [-0.5px, -0.5py]
+        - ref: mirror_matrix_outer_bottom
+          shift: [-0.5px, -0.5py]
+  comboright:
+  - name: boardright
+  - operation: subtract
+    name: keys
+  fullcombo:
+  - name: comboleft
+  - operation: add
+    name: comboright
+pcbs:
+  left:
+    outlines:
+      main:
+        outline: boardleft
+    footprints:
+      keyswitches:
+        where: true
+        what: choc
+        params:
+          hotswap: true
+          from: "{{col_net}}"
+          to: "{{colrow}}"
