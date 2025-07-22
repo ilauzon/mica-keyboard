@@ -6,6 +6,9 @@ units:
 points:
   zones:
     matrix:
+      # Fix placement on KiCAD sheet.
+      anchor:
+        shift: [70, -180]
       key:
         padding: 1ky
         spread: 1kx
@@ -156,10 +159,45 @@ pcbs:
       main:
         outline: boardleft
     footprints:
-      keyswitches:
-        where: true
+      choc_hotswap:
+        where: /^matrix_.*|^thumbs.*|^layer2.*|^utils.*/
         what: choc
         params:
           hotswap: true
-          from: "{{col_net}}"
+          reverse: false
+          keycaps: true
+          from: "{{column_net}}"
           to: "{{colrow}}"
+      diode:
+        what: diode
+        where: /^matrix_(?!(?:inner_top)).*|^thumbs.*|^layer2.*|^utils.*lower$/
+        params:
+          from: "{{colrow}}"
+          to: "{{row_net}}"
+        adjust:
+          shift: [0, -5]
+      diode_controller_1:
+        what: diode
+        where: /^utils_single_upper$/
+        params:
+          from: "{{colrow}}"
+          to: "{{row_net}}"
+        adjust:
+          shift: [0, -6]
+      diode_controller_2:
+        what: diode
+        where: /^matrix_inner_top$/
+        params:
+          from: "{{colrow}}"
+          to: "{{row_net}}"
+        adjust:
+          shift: [0, -3]
+      nice_nano:
+        what: nice_nano
+        params:
+          orientation: "up"
+        where:
+          ref: utils_single_upper
+          shift: [-6.5, 4.5]
+          rotate: 180
+

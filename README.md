@@ -1,7 +1,7 @@
 # Mica Keyboard
 The **Mica** keyboard is a low-profile, ortholinear, and split keyboard inspired by the Ergodox. It closely matches the layout of the Ergodox, only removing the extra keys around the thumb clusters, and one key from the mod and number rows on each half.
 
-This keyboard is designed to be a **portable** complement to the Ergodox. A user may sport a full-size setup with an Ergodox, but find it inconvenient to carry and set up their keyboard when moving around frequently. With the Mica keyboard, setting up is simple and storage is compact.
+This keyboard is designed to be a **portable** alternative to the Ergodox. A user may have a full-size setup with an Ergodox, but find it inconvenient to carry and set up when moving around frequently. With the Mica keyboard, setting up is simple and storage is compact.
 
 As of now (June 18 2025) the Mica keyboard is still it its design stage. This document will be updated as more components of the keyboard are realized.
 
@@ -15,6 +15,11 @@ The Mica keyboard is planned to have the following features:
 
 # Generating the files
 To generate the files needed to build the keyboard (PCB, case design):
+1. Install ergogen.
 ```shell
-ergogen config.yaml
+npm i ergogen
+```
+2. Run the following command.
+```shell
+ergogen .
 ```
