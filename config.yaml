@@ -14,12 +14,12 @@ points:
         spread: 1kx
       columns:
         outer:
-          key.column_net: P020
+          key.column_net: P031
         pinky:
-          key.column_net: P022
+          key.column_net: P029
         ring:
           key.stagger: 3
-          key.column_net: P024
+          key.column_net: P002
         middle:
           key.stagger: 2
           key.column_net: P100
@@ -194,8 +194,8 @@ pcbs:
           from: "{{colrow}}"
           to: "{{row_net}}"
         adjust:
-          shift: [8, -2]
-          rotate: 90
+          shift: [0, -4]
+          rotate: 0
       diode_controller_fix_1:
         what: diode
         where: /^utils_single_upper$/
@@ -220,6 +220,31 @@ pcbs:
           ref: utils_single_upper
           shift: [-6.5, 4.5]
           rotate: 180
+      hole_top_left:
+        what: mountinghole
+        where:
+          ref: [matrix_outer_num]
+          shift: [0.5kx, -0.3ky]
+      hole_top_right:
+        what: mountinghole
+        where:
+          ref: [matrix_index_num]
+          shift: [0.5kx, -0.3ky]
+      hole_bottom_left:
+        what: mountinghole
+        where:
+          ref: [matrix_outer_mod]
+          shift: [0.5kx, -0.3ky]
+      hole_bottom_right:
+        what: mountinghole
+        where:
+          ref: [thumbs_space_cluster]
+          shift: [0.5kx, -0.3ky]
+      hole_bottom_middle:
+        what: mountinghole
+        where:
+          ref: [matrix_middle_mod]
+          shift: [0.5kx, -0.3ky]
   right:
     outlines:
       main:
@@ -241,8 +266,8 @@ pcbs:
           from: "{{colrow}}"
           to: "{{row_net}}"
         adjust:
-          shift: [-8, -2]
-          rotate: -90
+          shift: [0, -4]
+          rotate: 0
       diode_controller_fix_1:
         what: diode
         where: /^mirror_utils_single_upper$/
@@ -267,4 +292,30 @@ pcbs:
           ref: mirror_utils_single_upper
           shift: [-6.5, 4.5]
           rotate: 0
+      hole_top_left:
+        what: mountinghole
+        where:
+          ref: [mirror_matrix_outer_num]
+          shift: [0.5kx, -0.3ky]
+      hole_top_right:
+        what: mountinghole
+        where:
+          ref: [mirror_matrix_index_num]
+          shift: [0.5kx, -0.3ky]
+      hole_bottom_left:
+        what: mountinghole
+        where:
+          ref: [mirror_matrix_outer_mod]
+          shift: [0.5kx, -0.3ky]
+      hole_bottom_right:
+        what: mountinghole
+        where:
+          ref: [mirror_thumbs_space_cluster]
+          shift: [0.5kx, -0.3ky]
+      hole_bottom_middle:
+        what: mountinghole
+        where:
+          ref: [mirror_matrix_middle_mod]
+          shift: [0.5kx, -0.3ky]
+      
 
