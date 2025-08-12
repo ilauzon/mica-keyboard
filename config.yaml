@@ -3,6 +3,9 @@ units:
   ky: cy
   px: kx + 4
   py: ky + 4
+  dpx: kx + 8
+  dpy: ky + 8
+  hole_size: 
 points:
   zones:
     matrix:
@@ -127,6 +130,39 @@ outlines:
           shift: [-0.5px, -0.5py]
         - ref: matrix_outer_bottom
           shift: [-0.5px, -0.5py]
+  boardleft_xl:
+    - what: polygon
+      operation: stack
+      fillet: 5
+      points:
+      - ref: matrix_outer_num
+        shift: [-0.5dpx, 0.5dpy]
+      - ref: matrix_ring_num
+        shift: [-0.5dpx, 0.5dpy]
+      - ref: matrix_middle_num
+        shift: [-0.5dpx, 0.5dpy]
+      - ref: matrix_middle_num
+        shift: [0.5dpx, 0.5dpy]
+      - ref: matrix_index_num
+        shift: [0.5dpx, 0.5dpy]
+      - ref: matrix_inner_num
+        shift: [0.5dpx, 0.5dpy]
+      - ref: utils_single_upper
+        shift: [0.5dpx, 0.80py]
+      - ref: utils_single_lower
+        shift: [0.5dpx, -0.70py]
+      - ref: thumbs_backspace_cluster
+        shift: [0.5dpx, 0.5dpy]
+      - ref: thumbs_backspace_cluster
+        shift: [0.5dpx, -0.5dpy]
+      - ref: layer2
+        shift: [-0.5px, -0.5dpy]
+      - ref: matrix_pinky_mod
+        shift: [0.5dpx, -0.5dpy]
+      - ref: matrix_outer_mod
+        shift: [-0.5dpx, -0.5dpy]
+      - ref: matrix_outer_bottom
+        shift: [-0.5dpx, -0.5dpy]
   comboleft:
     - name: boardleft
     - operation: subtract
@@ -164,6 +200,39 @@ outlines:
           shift: [-0.5px, -0.5py]
         - ref: mirror_matrix_outer_bottom
           shift: [-0.5px, -0.5py]
+  boardright_xl:
+    - what: polygon
+      operation: stack
+      fillet: 4
+      points:
+      - ref: mirror_matrix_outer_num
+        shift: [-0.5dpx, 0.5dpy]
+      - ref: mirror_matrix_ring_num
+        shift: [-0.5px, 0.5py]
+      - ref: mirror_matrix_middle_num
+        shift: [-0.5dpx, 0.5dpy]
+      - ref: mirror_matrix_middle_num
+        shift: [0.5dpx, 0.5dpy]
+      - ref: mirror_matrix_index_num
+        shift: [0.5dpx, 0.5dpy]
+      - ref: mirror_matrix_inner_num
+        shift: [0.5dpx, 0.5dpy]
+      - ref: mirror_utils_single_upper
+        shift: [0.5dpx, 0.75py]
+      - ref: mirror_utils_single_lower
+        shift: [0.5dpx, -0.75py]
+      - ref: mirror_thumbs_backspace_cluster
+        shift: [0.5dpx, 0.5dpy]
+      - ref: mirror_thumbs_backspace_cluster
+        shift: [0.5dpx, -0.5dpy]
+      - ref: mirror_layer2
+        shift: [-0.5dpx, -0.5dpy]
+      - ref: mirror_matrix_pinky_mod
+        shift: [0.5dpx, -0.5dpy]
+      - ref: mirror_matrix_outer_mod
+        shift: [-0.5dpx, -0.5dpy]
+      - ref: mirror_matrix_outer_bottom
+        shift: [-0.5dpx, -0.5dpy]
   comboright:
   - name: boardright
   - operation: subtract
@@ -317,5 +386,31 @@ pcbs:
         where:
           ref: [mirror_matrix_middle_mod]
           shift: [0.5kx, -0.3ky]
-      
+cases:
+    left_bottom:
+      - name: boardleft
+        extrude: 1
+    left_xl_bottom:
+      - name: boardleft_xl
+        extrude: 1
+    _left_outer_wall:
+      - name: boardleft_xl
+        extrude: 4
+    _left_inner_wall:
+      - name: boardleft
+        extrude: 4
+    left_wall:
+      - what: case
+        name: _left_outer_wall
+        operation: add
+      - what: case
+        name: _left_inner_wall
+        operation: subtract
+    left_case:
+      - what: case
+        name: left_xl_bottom
+        operation: add
+      - what: case
+        name: left_wall
+        operation: add
 
