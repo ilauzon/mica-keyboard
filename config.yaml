@@ -96,7 +96,7 @@ outlines:
   keys:
     - what: rectangle
       where: true
-      size: [kx-0.5, ky-0.5]
+      size: [14, 14]
   boardleft:
     - what: polygon
       operation: stack
@@ -200,47 +200,11 @@ outlines:
           shift: [-0.5px, -0.5py]
         - ref: mirror_matrix_outer_bottom
           shift: [-0.5px, -0.5py]
-  boardright_xl:
-    - what: polygon
-      operation: stack
-      fillet: 4
-      points:
-      - ref: mirror_matrix_outer_num
-        shift: [-0.5dpx, 0.5dpy]
-      - ref: mirror_matrix_ring_num
-        shift: [-0.5px, 0.5py]
-      - ref: mirror_matrix_middle_num
-        shift: [-0.5dpx, 0.5dpy]
-      - ref: mirror_matrix_middle_num
-        shift: [0.5dpx, 0.5dpy]
-      - ref: mirror_matrix_index_num
-        shift: [0.5dpx, 0.5dpy]
-      - ref: mirror_matrix_inner_num
-        shift: [0.5dpx, 0.5dpy]
-      - ref: mirror_utils_single_upper
-        shift: [0.5dpx, 0.75py]
-      - ref: mirror_utils_single_lower
-        shift: [0.5dpx, -0.75py]
-      - ref: mirror_thumbs_backspace_cluster
-        shift: [0.5dpx, 0.5dpy]
-      - ref: mirror_thumbs_backspace_cluster
-        shift: [0.5dpx, -0.5dpy]
-      - ref: mirror_layer2
-        shift: [-0.5dpx, -0.5dpy]
-      - ref: mirror_matrix_pinky_mod
-        shift: [0.5dpx, -0.5dpy]
-      - ref: mirror_matrix_outer_mod
-        shift: [-0.5dpx, -0.5dpy]
-      - ref: mirror_matrix_outer_bottom
-        shift: [-0.5dpx, -0.5dpy]
-  comboright:
-  - name: boardright
-  - operation: subtract
-    name: keys
-  fullcombo:
-  - name: comboleft
-  - operation: add
-    name: comboright
+  cutout:
+    - name: boardleft_xl
+    - operation: subtract
+      name: keys
+    
 pcbs:
   left:
     outlines:
@@ -256,6 +220,39 @@ pcbs:
           keycaps: true
           from: "{{column_net}}"
           to: "{{colrow}}"
+      # Battery jack
+      jstph:
+        what: jstph
+        where: 
+          ref: matrix_pinky_home
+          shift: [-0.4kx, 0.5kx]
+          rotate: -90
+        params:
+          side: B
+          pos: pos
+          neg: GND
+      # Reset button
+      reset:
+        what: EVQPUC
+        params:
+          side: B
+          from: GND
+          to: RST
+        where:
+          ref: matrix_pinky_num
+          shift: [-10, 9]
+          rotate: 0
+      # Battery on/off switch
+      battery_switch:
+        what: slider
+        where:
+          ref: matrix_outer_home
+          shift: [-10, 0]
+          rotate: 90
+        params:
+          side: B
+          from: pos
+          to: RAW
       diode:
         what: diode
         where: /^matrix_(?!(?:inner_top|inner_num)).*|^thumbs.*|^layer2.*|^utils.*lower$/
@@ -387,30 +384,6 @@ pcbs:
           ref: [mirror_matrix_middle_mod]
           shift: [0.5kx, -0.3ky]
 cases:
-    left_bottom:
-      - name: boardleft
-        extrude: 1
-    left_xl_bottom:
-      - name: boardleft_xl
-        extrude: 1
-    _left_outer_wall:
-      - name: boardleft_xl
-        extrude: 4
-    _left_inner_wall:
-      - name: boardleft
-        extrude: 4
-    left_wall:
-      - what: case
-        name: _left_outer_wall
-        operation: add
-      - what: case
-        name: _left_inner_wall
-        operation: subtract
-    left_case:
-      - what: case
-        name: left_xl_bottom
-        operation: add
-      - what: case
-        name: left_wall
-        operation: add
-
+  plate:
+    - name: cutout
+      extrude: 1.2
