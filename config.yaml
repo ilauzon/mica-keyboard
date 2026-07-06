@@ -239,16 +239,16 @@ pcbs:
           from: GND
           to: RST
         where:
-          ref: matrix_pinky_num
-          shift: [-10, 9]
-          rotate: 0
+          ref: thumbs_backspace_cluster
+          shift: [-5, 11.5]
+          rotate: -10 # rotation of the thumb cluster, minus the angle of the drawn PCB edge
       # Battery on/off switch
       battery_switch:
         what: slider
         where:
-          ref: matrix_outer_home
-          shift: [-10, 0]
-          rotate: 90
+          ref: matrix_inner_num
+          shift: [17.5, 2.5]
+          rotate: -40
         params:
           side: B
           from: pos
@@ -284,7 +284,7 @@ pcbs:
           orientation: "up"
         where:
           ref: utils_single_upper
-          shift: [-6.5, 4.5]
+          shift: [-9.0, 4.5]
           rotate: 180
       hole_top_left:
         what: mountinghole
@@ -325,6 +325,39 @@ pcbs:
           keycaps: true
           from: "{{column_net}}"
           to: "{{colrow}}"
+      # Battery jack
+      jstph:
+        what: jstph
+        where: 
+          ref: mirror_matrix_pinky_home
+          shift: [-0.4kx, 0.5kx]
+          rotate: -90
+        params:
+          side: B
+          pos: pos
+          neg: GND
+      # Reset button
+      reset:
+        what: EVQPUC
+        params:
+          side: B
+          from: GND
+          to: RST
+        where:
+          ref: mirror_thumbs_backspace_cluster
+          shift: [-5, 11.5]
+          rotate: -10 # rotation of the thumb cluster, minus the angle of the drawn PCB edge
+      # Battery on/off switch
+      battery_switch:
+        what: slider
+        where:
+          ref: mirror_matrix_inner_num
+          shift: [17.5, 2.5]
+          rotate: -40
+        params:
+          side: B
+          from: pos
+          to: RAW
       diode:
         what: diode
         where: /^mirror_matrix_(?!(?:inner_top|inner_num)).*|^mirror_thumbs.*|^mirror_layer2.*|^mirror_utils.*lower$/
@@ -356,7 +389,7 @@ pcbs:
           orientation: "up"
         where:
           ref: mirror_utils_single_upper
-          shift: [-6.5, 4.5]
+          shift: [-9.0, 4.5]
           rotate: 0
       hole_top_left:
         what: mountinghole
