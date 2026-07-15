@@ -17,35 +17,35 @@ points:
         spread: 1kx
       columns:
         outer:
-          key.column_net: P031
+          key.column_net: P115
         pinky:
           key.stagger: 0
-          key.column_net: P029
+          key.column_net: P113
         ring:
           key.stagger: 8
-          key.column_net: P002
+          key.column_net: P111
         middle:
           key.stagger: 2
-          key.column_net: P100
+          key.column_net: P010
         index:
           key.stagger: -2
-          key.column_net: P011
+          key.column_net: P009
           rows.mod.skip: true
         inner:
           key.stagger: -2
-          key.column_net: P104
+          key.column_net: P011
           rows.mod.skip: true
       rows:
         mod:
-          row_net: P111
+          row_net: P002
         bottom:
-          row_net: P010
+          row_net: P029
         home:
-          row_net: P009
+          row_net: P031
         top:
-          row_net: P113
+          row_net: P106
         num:
-          row_net: P115
+          row_net: P104
     thumbs:
       key:
         height: 1.5ky
@@ -55,18 +55,18 @@ points:
         shift: [0.2kx, -0.41ky]
       columns:
         first:
-          key.column_net: P104
+          key.column_net: P010
         second:
           rows.cluster.splay: -20
-          key.column_net: P106
+          key.column_net: P009
           key.shift: [0.25kx, -0.14ky]
         third:
           rows.cluster.splay: -20
-          key.column_net: P106
+          key.column_net: P011
           key.shift: [0.53kx, -0.18ky]
       rows:
         cluster:
-          row_net: P111
+          row_net: P100
   mirror: &mirror
     ref: thumbs_third_cluster
     distance: 2ky
@@ -162,7 +162,7 @@ pcbs:
       nice_nano:
         what: nice_nano
         params:
-          orientation: "down"
+          orientation: "up"
         where:
           ref: matrix_inner_num
           shift: [-9.0, 4.5]
