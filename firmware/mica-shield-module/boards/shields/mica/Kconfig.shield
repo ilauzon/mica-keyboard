@@ -1,0 +1,5 @@
+config SHIELD_MICA_LEFT
+    def_bool $(shields_list_contains,mica_left)
+
+config SHIELD_MICA_RIGHT
+    def_bool $(shields_list_contains,mica_right)

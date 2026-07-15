@@ -1,25 +1,51 @@
 # Mica Keyboard
-The **Mica** keyboard is a low-profile, ortholinear, and split keyboard inspired by the Ergodox. It closely matches the layout of the Ergodox, only removing the extra keys around the thumb clusters, and one key from the mod and number rows on each half.
+The **Mica** keyboard is a modular, split, and wireless keyboard.
 
-This keyboard is designed to be a **portable** alternative to the Ergodox. A user may have a full-size setup with an Ergodox, but find it inconvenient to carry and set up when moving around frequently. With the Mica keyboard, setting up is simple and storage is compact.
-
-As of now (June 18 2025) the Mica keyboard is still it its design stage. This document will be updated as more components of the keyboard are realized.
-
-# Features
-The Mica keyboard is planned to have the following features:
+The Mica keyboard has the following features:
+- Support for hotswappable I2C modules on the left, right, and top of the case
 - Choc keyswitches for a compact design
-- Bluetooth capabilities for a fully wireless experience
+- Bluetooth for a fully wireless experience
 - Stable and adjustable tenting solution
-- A minimal case that keeps dust out without compromising weight or durability
-- Status indicator lights for troubleshooting
+- A lightweight case that keeps dust out without compromising durability
+- Status indicator lights for layer indication and troubleshooting
 
-# Generating the files
+Creation of this keyboard was inspired by Christian Selig's [Caldera](https://christianselig.com/2024/07/caldera-keyboard/). I also followed FlatFootFox's [Ergogen tutorial](https://flatfootfox.com/ergogen-introduction/) in the making of this keyboard.
+
+## Instructions
+
+If you would like to build this keyboard for yourself, see the Releases section of this GitHub repository for the following:
+- Gerber files to send to a PCB manufacturer
+- 3D models of the case to print
+- Firmware to flash onto your MCU (A nice!nano v2)
+
+If you want to build this or a similar keyboard from source, keep reading!
+
+### Prerequisites
+
+- POSIX-compliant environment (macOS, Linux, Git Bash for Windows)
+- npm (to install Ergogen)
+- podman (to build the firmware)
+- make (to build the firmware)
+
+### (TODO) Bill of Materials
+### (TODO) Step 1: Using Ergogen to generate the base PCB and 3D models
+
 To generate the files needed to build the keyboard (PCB, case design):
 1. Install ergogen.
 ```shell
 npm i ergogen
 ```
-2. Run the following command.
+2. Build the PCB and case.
 ```shell
-ergogen .
+npm run build
+npm run case
 ```
+
+### (TODO) Step 2: Editing the PCB with KiCad
+### Step 3: Building and flashing the firmware
+
+To build the firmware, simply run `cd firmware && make`. This will create two files in `firmware/build`: `zmk_left.uf2` and `zmk_right.uf2`. Flash each half of your keyboard accordingly.
+
+I opted to configure my project to build the firmware locally instead of ZMK's recommended approach of using GitHub Actions. The idea of commits being the only way to build the firmware does not appeal to me. Instead, I went with ZMK's Podman [approach](https://zmk.dev/docs/development/local-toolchain/setup/container) to building the software locally.
+
+I tried to simplify the build process as much as possible at the cost of slightly slower build times (caused by not leveraging all available incremental build options) in a Makefile. If build times become a problem for you, you can examine the Makefile and cross-reference it with the ZMK Podman tutorial linked above. The Makefile itself is a simple translation of the "happy path" in that guide.
