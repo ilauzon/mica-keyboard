@@ -1,6 +1,6 @@
 CONTAINERNAME := zmk-container
 
-.PHONY: all left shell container clone
+.PHONY: all left right shell container clone
 
 all: left right
 
@@ -14,7 +14,7 @@ left: container
 		-p 3000:3000 \
 		${CONTAINERNAME} /bin/bash -c ' \
 		{ if [ ! -d "../.west" ]; then west init -l . && west update; fi } && \
-		west build -p -d ../build/left -b nice_nano -- \
+		west build -p -d ../build/left -b nice_nano_v2 -- \
 			-DZMK_EXTRA_MODULES="/workspaces/zmk-modules/mica" \
 			-DZMK_CONFIG="/workspaces/zmk-modules/mica/config" \
 			-DSHIELD=mica_left \
@@ -32,13 +32,31 @@ right: container
 		-p 3000:3000 \
 		${CONTAINERNAME} /bin/bash -c ' \
 		{ if [ ! -d "../.west" ]; then west init -l . && west update; fi } && \
-		west build -p -d ../build/right -b nice_nano -- \
+		west build -p -d ../build/right -b nice_nano_v2 -- \
 			-DZMK_EXTRA_MODULES="/workspaces/zmk-modules/mica" \
 			-DZMK_CONFIG="/workspaces/zmk-modules/mica/config" \
 			-DSHIELD=mica_right \
 		' \
 	&& mkdir -p ../build \
 	&& cp build/right/zephyr/zmk.uf2 ../build/zmk_right.uf2
+
+settings_reset: container
+	cd zmk && \
+	podman run -it --rm \
+		--security-opt label=disable \
+		--workdir /workspaces/zmk/app \
+		-v .:/workspaces/zmk \
+		-v ../mica-shield-module:/workspaces/zmk-modules/mica \
+		-p 3000:3000 \
+		${CONTAINERNAME} /bin/bash -c ' \
+		{ if [ ! -d "../.west" ]; then west init -l . && west update; fi } && \
+		west build -p -d ../build/settings_reset -b nice_nano_v2 -- \
+			-DZMK_EXTRA_MODULES="/workspaces/zmk-modules/mica" \
+			-DZMK_CONFIG="/workspaces/zmk-modules/mica/config" \
+			-DSHIELD=settings_reset \
+		' \
+	&& mkdir -p ../build \
+	&& cp build/settings_reset/zephyr/zmk.uf2 ../build/zmk_settings_reset.uf2
 
 shell: container
 	cd zmk && \
