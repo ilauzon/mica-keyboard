@@ -13,5 +13,7 @@ if SHIELD_MICA_LEFT || SHIELD_MICA_RIGHT
 
 config ZMK_SPLIT
     default y
+config ZMK_SLEEP
+    default y
 
 endif
