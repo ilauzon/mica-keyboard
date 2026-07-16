@@ -44,8 +44,6 @@ npm run case
 ### (TODO) Step 2: Editing the PCB with KiCad
 ### Step 3: Building and flashing the firmware
 
-To build the firmware, simply run `cd firmware && make`. This will create two files in `firmware/build`: `zmk_left.uf2` and `zmk_right.uf2`. Flash each half of your keyboard accordingly.
+To build the firmware, simply run `cd firmware && make`. This will create two files in `firmware/build`: `zmk_left.uf2` and `zmk_right.uf2`. Flash each half of your keyboard accordingly. The Makefile pulls down the ZMK source tree and build tools to build the firmware, so the first build will be absolutely glacial. Subsequent builds should be reasonably fast.
 
-I opted to configure my project to build the firmware locally instead of ZMK's recommended approach of using GitHub Actions. The idea of commits being the only way to build the firmware does not appeal to me. Instead, I went with ZMK's Podman [approach](https://zmk.dev/docs/development/local-toolchain/setup/container) to building the software locally.
-
-I tried to simplify the build process as much as possible at the cost of slightly slower build times (caused by not leveraging all available incremental build options) in a Makefile. If build times become a problem for you, you can examine the Makefile and cross-reference it with the ZMK Podman tutorial linked above. The Makefile itself is a simple translation of the "happy path" in that guide.
+I opted to configure my project to build the firmware locally instead of ZMK's recommended approach of using GitHub Actions. I wanted to be able to test out features quickly without commiting and pushing every test. I followed ZMK's [Podman guide](https://zmk.dev/docs/development/local-toolchain/setup/container) to accomplish this.
