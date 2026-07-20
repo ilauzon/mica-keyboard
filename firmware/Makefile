@@ -30,12 +30,11 @@ right: container
 		--workdir /workspaces/zmk/app \
 		-v .:/workspaces/zmk \
 		-v ../mica-shield-module:/workspaces/zmk-modules/mica-shield-module \
-		-v ../mica-event-module:/workspaces/zmk-modules/mica-event-module \
 		-p 3000:3000 \
 		${CONTAINERNAME} /bin/bash -c ' \
 		{ if [ ! -d "../.west" ]; then west init -l . && west update; fi } && \
 		west build -p -d ../build/right -b nice_nano_v2 -- \
-			-DZMK_EXTRA_MODULES="/workspaces/zmk-modules/mica-shield-module;/workspaces/zmk-modules/mica-event-module" \
+			-DZMK_EXTRA_MODULES="/workspaces/zmk-modules/mica-shield-module" \
 			-DZMK_CONFIG="/workspaces/zmk-modules/mica-shield-module/config" \
 			-DSHIELD=mica_right \
 		' \
@@ -48,14 +47,10 @@ settings_reset: container
 		--security-opt label=disable \
 		--workdir /workspaces/zmk/app \
 		-v .:/workspaces/zmk \
-		-v ../mica-shield-module:/workspaces/zmk-modules/mica-shield-module \
-		-v ../mica-event-module:/workspaces/zmk-modules/mica-event-module \
 		-p 3000:3000 \
 		${CONTAINERNAME} /bin/bash -c ' \
 		{ if [ ! -d "../.west" ]; then west init -l . && west update; fi } && \
 		west build -p -d ../build/settings_reset -b nice_nano_v2 -- \
-			-DZMK_EXTRA_MODULES="/workspaces/zmk-modules/mica-shield-module;/workspaces/zmk-modules/mica-event-module" \
-			-DZMK_CONFIG="/workspaces/zmk-modules/mica-shield-module/config" \
 			-DSHIELD=settings_reset \
 		' \
 	&& mkdir -p ../build \

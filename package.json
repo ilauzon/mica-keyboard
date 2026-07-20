@@ -2,8 +2,8 @@
     "name": "mica-keyboard",
     "version": "0.1.0",
     "scripts": {
-        "build": "ergogen .",
-        "case": "ergogen . && for i in output/cases/*.jscad; do npx @jscad/cli@1 \"$i\" -of stla; done"
+        "build": "cd ergogen && ergogen .",
+        "case": "cd ergogen && ergogen . && for i in output/cases/*.jscad; do npx @jscad/cli@1 \"$i\" -of stla; done"
     },
     "dependencies": {
         "ergogen": "^4.2.1"
