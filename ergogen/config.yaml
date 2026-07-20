@@ -68,8 +68,8 @@ points:
         cluster:
           row_net: P100
   mirror: &mirror
-    ref: thumbs_third_cluster
-    distance: 2ky
+    ref: matrix_inner_num
+    distance: 0
 outlines:
   keycaps:
     - what: rectangle
@@ -111,6 +111,31 @@ outlines:
           shift: [-0.5px, -0.75py]
         - ref: thumbs_first_cluster
           shift: [-4kx - 0.2kx - 0.5px, -0.75py]
+  boardright:
+    - what: polygon
+      operation: stack
+      fillet: 3
+      points:
+        - ref: mirror_matrix_middle_num
+          shift: [-3kx - 0.5px, 0.5py]
+        - ref: mirror_matrix_middle_num
+          shift: [2kx + 0.5px, 0.5py]
+        - ref: mirror_matrix_inner_bottom
+          shift: [0.5px, -0.16py]
+        - ref: mirror_thumbs_third_cluster
+          shift: [-0.5kx, 0.75py]
+        - ref: mirror_thumbs_third_cluster
+          shift: [0.5px, 0.75py]
+        - ref: mirror_thumbs_third_cluster
+          shift: [0.5px, -0.75py]
+        - ref: mirror_thumbs_second_cluster
+          shift: [0.5kx, -0.75py]
+        - ref: mirror_thumbs_first_cluster
+          shift: [0.5kx, -0.75py]
+        - ref: mirror_thumbs_first_cluster
+          shift: [-0.5px, -0.75py]
+        - ref: mirror_thumbs_first_cluster
+          shift: [-4kx - 0.2kx - 0.5px, -0.75py]
 pcbs:
   left:
     outlines:
@@ -136,8 +161,8 @@ pcbs:
           rotate: 90
         params:
           side: B
-          pos: pos
-          neg: GND
+          pos: GND
+          neg: pos
       # Reset button
       reset:
         what: EVQPUC
@@ -209,4 +234,102 @@ pcbs:
         what: mountinghole
         where:
           ref: [matrix_middle_mod]
+          shift: [0, -0.6ky]
+  right:
+    outlines:
+      main:
+        outline: boardright
+    footprints:
+      # Hotswap switches
+      choc_hotswap:
+        where: /^mirror_matrix_.*|^mirror_thumbs.*/
+        what: choc
+        params:
+          hotswap: true
+          reverse: false
+          keycaps: true
+          from: "{{column_net}}"
+          to: "{{colrow}}"
+      # Battery jack
+      jstph:
+        what: jstph
+        where:
+          ref: mirror_thumbs_first_cluster
+          shift: [0, 0.75ky]
+          rotate: 90
+        params:
+          side: B
+          pos: GND
+          neg: pos
+      # Reset button
+      reset:
+        what: EVQPUC
+        where:
+          ref: mirror_thumbs_third_cluster
+          shift: [-1kx, 0.75ky + 1]
+        params:
+          side: B
+          from: GND
+          to: RST
+      # Battery on/off switch
+      battery_switch:
+        what: slider
+        where:
+          ref: mirror_thumbs_third_cluster
+          shift: [0, 0.75ky + 1]
+        params:
+          side: B
+          from: pos
+          to: RAW
+      # Microcontroller
+      nice_nano:
+        what: nice_nano
+        params:
+          orientation: "up"
+        where:
+          ref: mirror_matrix_inner_num
+          shift: [-9.0, 4.5]
+          rotate: 0
+      # Diodes for each switch
+      diode:
+        what: diode
+        where: /^mirror_matrix_(?!(?:index_num|inner_num))|^mirror_thumbs.*$/
+        params:
+          from: "{{colrow}}"
+          to: "{{row_net}}"
+        adjust:
+          shift: [0, -4]
+      diode_controller_fix:
+        what: diode
+        where: /^mirror_matrix_(?:index_num|inner_num)$/
+        params:
+          from: "{{colrow}}"
+          to: "{{row_net}}"
+        adjust:
+          shift: [0, -8]
+      # Mounting holes
+      hole_top_left:
+        what: mountinghole
+        where:
+          ref: [mirror_matrix_outer_num]
+          shift: [0.5kx, -0.3ky]
+      hole_top_right:
+        what: mountinghole
+        where:
+          ref: [mirror_matrix_index_num]
+          shift: [-0.5kx, -0.3ky]
+      hole_bottom_left:
+        what: mountinghole
+        where:
+          ref: [mirror_matrix_outer_mod]
+          shift: [0.5kx, -0.3ky]
+      hole_bottom_right:
+        what: mountinghole
+        where:
+          ref: [mirror_thumbs_second_cluster]
+          shift: [0.5kx, -0.3ky]
+      hole_bottom_middle:
+        what: mountinghole
+        where:
+          ref: [mirror_matrix_middle_mod]
           shift: [0, -0.6ky]
