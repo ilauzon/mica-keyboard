@@ -1,56 +1,18 @@
 # Mica Keyboard
-The **Mica** keyboard is a modular, split, and wireless keyboard.
+A fully custom keyboard, inspired by Christian Selig's [Caldera](https://christianselig.com/2024/07/caldera-keyboard/) and FlatFootFox's [Ergogen tutorial](https://flatfootfox.com/ergogen-introduction/).
 
-The Mica keyboard has the following features:
-- Support for hotswappable I2C modules on the left, right, and top of the case
-- Choc keyswitches for a compact design
-- Bluetooth for a fully wireless experience
-- Stable and adjustable tenting solution
-- A lightweight case that keeps dust out without compromising durability
-- Status indicator lights for layer indication and troubleshooting
-
-Creation of this keyboard was inspired by Christian Selig's [Caldera](https://christianselig.com/2024/07/caldera-keyboard/). I also followed FlatFootFox's [Ergogen tutorial](https://flatfootfox.com/ergogen-introduction/) in the making of this keyboard.
+The Mica keyboard is
+- **modular** via a 3.3V I2C bus connected to ports on the left, right, and top of the case,
+- **split and ortholinear** to facilitate long typing sessions,
+- **fully wireless** with BLE connections between the keyboard halves and the host, and
+- **portable** via a thin design with Choc switches.
 
 ## Instructions
 
-If you would like to build this keyboard for yourself, see the Releases section of this GitHub repository for the following:
-- Gerber files to send to a PCB manufacturer
-- 3D models of the case to print
-- Firmware to flash onto your MCU (A nice!nano v2)
+If you would like to build this keyboard:
 
-If you want to build this or a similar keyboard from source, keep reading!
-
-### Prerequisites
-
-- POSIX-compliant environment (macOS, Linux, Git Bash for Windows)
-- npm (to install Ergogen)
-- podman (to build the firmware)
-- make (to build the firmware)
-
-### (TODO) Bill of Materials
-### (TODO) Step 1: Using Ergogen to generate the base PCB and 3D models
-
-To generate the files needed to build the keyboard (PCB, case design):
-1. Install ergogen.
-```shell
-npm i ergogen
-```
-2. Build the PCB and case.
-```shell
-npm run build
-npm run case
-```
-
-### (TODO) Step 2: Editing the PCB with KiCad
-### Step 3: Building the firmware
-
-```sh
-cd firmware
-make
-```
-
-This will build three `uf2` files in `firmware/build`: `zmk_left.uf2`, `zmk_right.uf2`, and `settings_reset.uf2`. Flash each half of your keyboard accordingly.
-
-The Makefile pulls down the ZMK source tree and build tools to build the firmware, so the first build will be absolutely glacial. Subsequent builds should be reasonably fast.
-
-I opted to configure my project to build the firmware locally instead of ZMK's recommended approach of using GitHub Actions. I wanted to be able to test out features quickly without commiting and pushing every test. I followed ZMK's [Podman guide](https://zmk.dev/docs/development/local-toolchain/setup/container) - refer to this if you want to change the build options.
+1. get the design files from the [Releases](https://github.com/ilauzon/mica-keyboard/releases) section ([or make them yourself](docs/software-build-instructions.md)):
+    - Gerber files to send to a PCB manufacturer
+    - 3D models of the case to print
+    - Firmware to flash onto your microcontroller (a nice!nano V2)
+2.  Read the [build instructions](docs/build-instructions.md) to put it all together.
