@@ -71,17 +71,38 @@ points:
     ref: matrix_inner_num
     distance: 0
 outlines:
-  keycaps:
+  keycapsleft:
     - what: rectangle
-      where: /^.*matrix.*$/
+      where: /^matrix.*$/
       size: [17.5, 16.5]
     - what: rectangle
-      where: /^.*thumbs.*$/
+      where: /^thumbs.*$/
+      size: [16.5, 26.5]
+  keycapsright:
+    - what: rectangle
+      where: /^mirror_matrix.*$/
+      size: [17.5, 16.5]
+    - what: rectangle
+      where: /^mirror_thumbs.*$/
       size: [16.5, 26.5]
   raw:
     - what: rectangle
       where: true
       size: [px, py]
+  pointsleft:
+    - what: rectangle
+      where: /^matrix.*$/
+      size: [1, 1]
+    - what: rectangle
+      where: /^thumbs.*$/
+      size: [1, 1]
+  pointsright:
+    - what: rectangle
+      where: /^mirror_matrix.*$/
+      size: [1, 1]
+    - what: rectangle
+      where: /^mirror_thumbs.*$/
+      size: [1, 1]
   keys:
     - what: rectangle
       where: true

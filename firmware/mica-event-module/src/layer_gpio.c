@@ -15,31 +15,56 @@
 
 LOG_MODULE_DECLARE(zmk, CONFIG_ZMK_LOG_LEVEL);
 
-// P0.06 for layer 1 LED
-static const struct gpio_dt_spec layer_led = {
+// P0.08 for symbols layer LED
+static const struct gpio_dt_spec symbols_layer_led = {
+    .port = DEVICE_DT_GET(DT_NODELABEL(gpio0)),
+    .pin = 8,
+    .dt_flags = GPIO_ACTIVE_HIGH,
+};
+
+// P0.06 for media layer LED
+static const struct gpio_dt_spec media_layer_led = {
     .port = DEVICE_DT_GET(DT_NODELABEL(gpio0)),
     .pin = 6,
     .dt_flags = GPIO_ACTIVE_HIGH,
 };
 
-static int init_gpio(void) {
-  if (!gpio_is_ready_dt(&layer_led)) {
+static int init_symbols_gpio(void) {
+  if (!gpio_is_ready_dt(&symbols_layer_led)) {
     return -ENODEV;
   }
 
-  return gpio_pin_configure_dt(&layer_led, GPIO_OUTPUT_INACTIVE);
+  return gpio_pin_configure_dt(&symbols_layer_led, GPIO_OUTPUT_INACTIVE);
 }
 
-static void gpio_high(void) { gpio_pin_set_dt(&layer_led, 1); }
+static int init_media_gpio(void) {
+  if (!gpio_is_ready_dt(&media_layer_led)) {
+    return -ENODEV;
+  }
 
-static void gpio_low(void) { gpio_pin_set_dt(&layer_led, 0); }
+  return gpio_pin_configure_dt(&media_layer_led, GPIO_OUTPUT_INACTIVE);
+}
+
+static void gpio_high(const struct gpio_dt_spec *pin) {
+  gpio_pin_set_dt(pin, 1);
+}
+
+static void gpio_low(const struct gpio_dt_spec *pin) {
+  gpio_pin_set_dt(pin, 0);
+}
 
 static int layer_gpio_handler(struct zmk_layer_state_changed const *event) {
   if (event->layer == 1) {
     if (event->state) {
-      gpio_high();
+      gpio_high(&symbols_layer_led);
     } else {
-      gpio_low();
+      gpio_low(&symbols_layer_led);
+    }
+  } else if (event->layer == 2) {
+    if (event->state) {
+      gpio_high(&media_layer_led);
+    } else {
+      gpio_low(&media_layer_led);
     }
   }
   return ZMK_EV_EVENT_BUBBLE;
@@ -54,6 +79,7 @@ static int layer_gpio_listener(zmk_event_t const *event) {
   return ZMK_EV_EVENT_BUBBLE;
 }
 
-SYS_INIT(init_gpio, APPLICATION, CONFIG_APPLICATION_INIT_PRIORITY);
+SYS_INIT(init_symbols_gpio, APPLICATION, CONFIG_APPLICATION_INIT_PRIORITY);
+SYS_INIT(init_media_gpio, APPLICATION, CONFIG_APPLICATION_INIT_PRIORITY);
 ZMK_LISTENER(led_toggle_on_layer, layer_gpio_listener);
 ZMK_SUBSCRIPTION(led_toggle_on_layer, zmk_layer_state_changed);
