@@ -38,4 +38,11 @@ RC(4,0) RC(4,1) RC(4,2) RC(4,3)                                                 
     vbatt: vbatt {
         compatible = "zmk,battery-nrf-vddh";
     };
+
+    behaviors {
+        gpiled: gpiled {
+            compatible = "zmk,behavior-layer-gpio";
+            #binding-cells = <1>;
+        };
+    };
 };

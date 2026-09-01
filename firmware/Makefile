@@ -15,7 +15,7 @@ left: container
 		-p 3000:3000 \
 		${CONTAINERNAME} /bin/bash -c ' \
 		{ if [ ! -d "../.west" ]; then west init -l . && west update; fi } && \
-		west build -p -d ../build/left -b nice_nano_v2 -- \
+		west build -p -d ../build/left -S zmk-usb-logging -b nice_nano_v2 -- \
 			-DZMK_EXTRA_MODULES="/workspaces/zmk-modules/mica-shield-module;/workspaces/zmk-modules/mica-event-module" \
 			-DZMK_CONFIG="/workspaces/zmk-modules/mica-shield-module/config" \
 			-DSHIELD=mica_left \
@@ -30,11 +30,12 @@ right: container
 		--workdir /workspaces/zmk/app \
 		-v .:/workspaces/zmk \
 		-v ../mica-shield-module:/workspaces/zmk-modules/mica-shield-module \
+		-v ../mica-event-module:/workspaces/zmk-modules/mica-event-module \
 		-p 3000:3000 \
 		${CONTAINERNAME} /bin/bash -c ' \
 		{ if [ ! -d "../.west" ]; then west init -l . && west update; fi } && \
-		west build -p -d ../build/right -b nice_nano_v2 -- \
-			-DZMK_EXTRA_MODULES="/workspaces/zmk-modules/mica-shield-module" \
+		west build -p -d ../build/right -S zmk-usb-logging -b nice_nano_v2 -- \
+			-DZMK_EXTRA_MODULES="/workspaces/zmk-modules/mica-shield-module;/workspaces/zmk-modules/mica-event-module" \
 			-DZMK_CONFIG="/workspaces/zmk-modules/mica-shield-module/config" \
 			-DSHIELD=mica_right \
 		' \
