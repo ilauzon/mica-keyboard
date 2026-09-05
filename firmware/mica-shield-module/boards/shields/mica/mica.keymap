@@ -12,8 +12,8 @@
    &kp GRAVE  &kp Q     &kp W     &kp E      &kp R      &kp T                &kp Y      &kp U    &kp I      &kp O      &kp P     &kp BSLH
    &kp TAB    &kp A     &kp S     &kp D      &kp F      &kp G                &kp H      &kp J    &kp K      &kp L      &kp SEMI  &kp RET
    &kp LSHFT  &kp Z     &kp X     &kp C      &kp V      &kp B                &kp N      &kp M    &kp COMMA  &kp DOT    &kp FSLH  &kp RSHFT
-   &kp LCTRL  &kp SQT   &kp LGUI  &kp LALT                                                       &kp RALT   &kp RGUI   &kp SQT   &kp RCTRL
-                                  &mo 2      &mo 1      &kp BSPC             &kp ESC    &mo 1    &mo 2                                
+   &kp LCTRL  &kp LGUI  &kp LGUI  &kp LALT                                                       &kp RALT   &kp RGUI   &kp RGUI  &kp RCTRL
+                                  &mo 2      &kp SPACE  &kp BSPC             &kp ESC    &mo 1    &kp SQT                                
                         >;                                                                                             
                 };                                                                                                     
                 symbols_layer {                                                                                        
@@ -22,8 +22,8 @@
    &kp GRAVE  &kp Q     &kp EQUAL &kp LBRC   &kp RBRC   &kp T                &kp Y      &kp U    &kp I      &kp O      &kp P     &kp F12
    &kp DEL    &kp UNDER &kp MINUS &kp LPAR   &kp RPAR   &kp G                &kp H      &kp SQT  &kp DQT    &kp L      &kp SEMI  &kp RET
    &kp LSHFT  &kp Z     &kp PLUS  &kp LBKT   &kp RBKT   &kp B                &kp N      &kp M    &kp COMMA  &kp DOT    &kp FSLH  &kp RSHFT
-   &kp LCTRL  &kp LALT  &kp LGUI  &kp SPACE                                                      &kp RALT   &kp RGUI   &kp SQT   &kp RCTRL
-                                  &kp SPACE  &kp LALT   &kp LGUI             &kp ESC    &mo 1    &mo 2                                
+   &kp LCTRL  &kp LGUI  &kp LGUI  &kp LALT                                                       &kp RALT   &kp RGUI   &kp RGUI  &kp RCTRL
+                                  &mo 2      &kp SPACE  &kp BSPC             &kp ESC    &mo 1    &kp SQT                                
                         >;                                                                                             
                 };                                                                                                     
                 media_layer {                                                                                          
@@ -32,8 +32,8 @@
    &kp GRAVE  &kp Q     &kp W     &kp E      &kp R      &kp T                &kp Y      &kp U    &kp I      &kp O      &kp P     &kp BSLH
    &kp TAB    &kp A     &kp S     &kp D      &kp F      &kp G                &kp LEFT   &kp DOWN &kp UP     &kp RIGHT  &kp SEMI  &kp C_PP
    &kp LSHFT  &kp Z     &kp X     &kp C      &kp V      &kp B                &kp N      &kp M    &kp C_PREV &kp C_NEXT &kp FSLH  &kp RSHFT
-   &kp LCTRL  &kp SQT   &kp LGUI  &kp LALT                                                       &kp RALT   &kp RGUI   &kp SQT   &kp RCTRL
-                                  &mo 2      &kp SPACE  &kp BSPC             &kp ESC    &mo 1    &mo 2                               
+   &kp LCTRL  &kp LGUI  &kp LGUI  &kp LALT                                                       &kp RALT   &kp RGUI   &kp RGUI  &kp RCTRL
+                                  &mo 2      &kp SPACE  &kp BSPC             &kp ESC    &mo 1    &kp SQT                                
                         >;
                 };
         };
