@@ -101,8 +101,8 @@ This part of the guide instructs you on how to attach the electronic components 
     - 6.3. Place the nice!nano on the back of the PCB, threading the legs through the holes in the PCB.
     - 6.4. Flip the PCB over, keeping the nice!nano on the back of the PCB.
     - 6.5. Solder the four corner legs on the front of the PCB to keep the nice!nano firmly in place.
-    - 6.5. Trim the legs so that they sit as close to flush as possible on the front of the PCB. It is important to trim the lower row of legs to be very flush, since switches will sit directly on top of these joints.
-    - 6.6. Solder the rest of the legs. 
+    - 6.6. Trim the legs so that they sit as close to flush as possible on the front of the PCB. It is important to trim the lower row of legs to be very flush, since switches will sit directly on top of these joints.
+    - 6.7. Solder the rest of the legs. 
 
     ![](./images/pcb_nano_front.webp)
     *Trimmed legs on the front on the PCB. Notice how the row on the left is trimmed more than the one on the right.*
@@ -119,7 +119,7 @@ This part of the guide instructs you on how to attach the electronic components 
 
 8. Test that the battery, nice!nano, and power switch are operating correctly: Flip the power switch to the on position (pushed towards the nice!nano). The nice!nano should turn on, indicated by a status LED on the PCB-facing side of the nice!nano board.
 
-9. **If you want an I2C bus**, now is the time to solder three female pogo pin connectors to the back of the PCB on the top, left, and right. See the picture in Step 7 demonstrating the correct orientation.
+9. **If you want an I2C bus**, now is the time to solder three female pogo pin connectors to the back of the PCB on the top, left, and right. See the picture in Step 7 demonstrating the correct orientation. Clip the pogo pin connector legs sticking out the front of the PCB.
 
 10. Solder the 0805 resistors and LEDs to the front of the PCB. 
     - Ensure that the LEDs are oriented correctly. See the picture below for the correct orientation.
@@ -242,6 +242,6 @@ This final section discusses how to assemble the final product after soldering t
 ![](./images/feet_tent.webp)
 *The bottom of the tenting attachment with four non-slip feet installed.*
 
-This concludes the guide on assembling the keyboard!
+That is all! Assembly is complete.
 
 ![](./images/banner_alt.webp)
