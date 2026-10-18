@@ -1,11 +1,15 @@
 # Mica Keyboard
-A fully custom keyboard, inspired by Christian Selig's [Caldera](https://christianselig.com/2024/07/caldera-keyboard/) and FlatFootFox's [Ergogen tutorial](https://flatfootfox.com/ergogen-introduction/).
+
+![](./docs/images/banner.webp)
+
+A fully custom keyboard, inspired by Christian Selig's [Caldera](https://christianselig.com/2024/07/caldera-keyboard/) and aided by FlatFootFox's [Ergogen tutorials](https://flatfootfox.com/ergogen-introduction/).
 
 The Mica keyboard is
-- **modular** via a 3.3V I2C bus connected to ports on the left, right, and top of the case,
-- **split and ortholinear** to facilitate long typing sessions,
-- **fully wireless** with BLE connections between the keyboard halves and the host, and
-- **portable** via a thin design with Choc switches.
+- **split + ortholinear** to facilitate long typing sessions,
+- **fully wireless** via BLE between the keyboard halves and the host,
+- **portable** with a thin profile and magnetic tenting legs for quick setup and teardown, and
+- **modular** via an I2C bus connected to ports on the left, right, and top of the case.
+    - *Note: no I2C modules have been created to interface with the keyboard yet.*
 
 ## Instructions
 
@@ -19,6 +23,7 @@ If you would like to build this keyboard:
         - `bottom.stl` - mirror for the right half
         - `top.stl` - mirror for the right half
         - `switch.stl`
+        - `led_case.stl`
         - `tent_foot.stl` - mirror for the right half
     - Firmware to flash onto your microcontroller (a nice!nano V2)
         - `zmk_left.uf2`
@@ -28,7 +33,7 @@ If you would like to build this keyboard:
 
 ## Building firmware from source
 
-Building from source has only been tested on Linux (Fedora KDE).
+Building from source has only been tested on Linux (Fedora).
 
 ```sh
 cd firmware
